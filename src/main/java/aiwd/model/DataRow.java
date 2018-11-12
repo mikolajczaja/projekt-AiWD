@@ -161,4 +161,308 @@ public class DataRow {
         this.inhaledPOCHP = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[76]);
         this.antiarhythmic = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[77]);
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public Boolean getFemale() {
+        return female;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public Boolean getParoxysmalAtrialFibrillation() {
+        return paroxysmalAtrialFibrillation;
+    }
+
+    public Boolean getPersistentAtrialFibrillation() {
+        return persistentAtrialFibrillation;
+    }
+
+    public Boolean getChronicAtrialFibrillation() {
+        return chronicAtrialFibrillation;
+    }
+
+    public Boolean getOver75() {
+        return over75;
+    }
+
+    public Boolean getBetween65and74() {
+        return between65and74;
+    }
+
+    public Boolean getArterialHypertension() {
+        return arterialHypertension;
+    }
+
+    public Boolean getDiabetesType2Insulin() {
+        return diabetesType2Insulin;
+    }
+
+    public Boolean getDiabetesType2OralMedication() {
+        return diabetesType2OralMedication;
+    }
+
+    public Boolean getDiabetesType2Diet() {
+        return diabetesType2Diet;
+    }
+
+    public Boolean getPnspEF() {
+        return pnspEF;
+    }
+
+    public Boolean getPnsrEF() {
+        return pnsrEF;
+    }
+
+    public Boolean getPsnmEF() {
+        return psnmEF;
+    }
+
+    public Boolean getPastHeartAttacks() {
+        return pastHeartAttacks;
+    }
+
+    public Boolean getPastStrokesOrTIA() {
+        return pastStrokesOrTIA;
+    }
+
+    public Integer getWeight() {
+        return weight;
+    }
+
+    public Boolean getNicotineSmoking() {
+        return nicotineSmoking;
+    }
+
+    public String getHeartRate() {
+        return heartRate;
+    }
+
+    public Boolean getHeartAttackDuringHospitalization() {
+        return heartAttackDuringHospitalization;
+    }
+
+    public Boolean getActiveInfectionDuringHospitalization() {
+        return activeInfectionDuringHospitalization;
+    }
+
+    public List<Double> getCreatinine() {
+        return creatinine;
+    }
+
+    public String geteGFR() {
+        return eGFR;
+    }
+
+    public String getPchnLevel() {
+        return pchnLevel;
+    }
+
+    public List<Double> getTsh() {
+        return tsh;
+    }
+
+    public List<Double> getAlat() {
+        return alat;
+    }
+
+    public List<Double> getAspat() {
+        return aspat;
+    }
+
+    public String getBilirubin() {
+        return bilirubin;
+    }
+
+    public Boolean getSteroids() {
+        return steroids;
+    }
+
+    public Boolean getAlcoholDrinking() {
+        return alcoholDrinking;
+    }
+
+    public Boolean getPastHemorrhage() {
+        return pastHemorrhage;
+    }
+
+    public List<Double> getCrp() {
+        return crp;
+    }
+
+    public List<Integer> getThrombocytes() {
+        return thrombocytes;
+    }
+
+    public List<Double> getHemoglobin() {
+        return hemoglobin;
+    }
+
+    public List<Integer> getSodium() {
+        return sodium;
+    }
+
+    public List<Double> getPotassium() {
+        return potassium;
+    }
+
+    public List<Integer> getNtProBNP() {
+        return ntProBNP;
+    }
+
+    public List<Double> getCholesterol() {
+        return cholesterol;
+    }
+
+    public List<Double> getLdl() {
+        return ldl;
+    }
+
+    public List<Double> getHdl() {
+        return hdl;
+    }
+
+    public List<Integer> getTriglicerides() {
+        return triglicerides;
+    }
+
+    public Double getLvedd() {
+        return lvedd;
+    }
+
+    public Double getRvedd() {
+        return rvedd;
+    }
+
+    public Double getLad() {
+        return lad;
+    }
+
+    public Double getLadCC() {
+        return ladCC;
+    }
+
+    public Double getLvef() {
+        return lvef;
+    }
+
+    public Double getIvsd() {
+        return ivsd;
+    }
+
+    public Double getLvpwd() {
+        return lvpwd;
+    }
+
+    public Double getLvmi() {
+        return lvmi;
+    }
+
+    public Double getE() {
+        return e;
+    }
+
+    public Double getA() {
+        return a;
+    }
+
+    public Double getDecT() {
+        return decT;
+    }
+
+    public Double getEaRatio() {
+        return eaRatio;
+    }
+
+    public Double getEemRatio() {
+        return eemRatio;
+    }
+
+    public String getDisfunctionLevel() {
+        return disfunctionLevel;
+    }
+
+    public Integer getTapse() {
+        return tapse;
+    }
+
+    public Integer getMapse() {
+        return mapse;
+    }
+
+    public Boolean getAsa() {
+        return asa;
+    }
+
+    public Boolean getClopidogrel() {
+        return clopidogrel;
+    }
+
+    public Boolean getTicagrelor() {
+        return ticagrelor;
+    }
+
+    public Boolean getVka() {
+        return vka;
+    }
+
+    public Boolean getNoac() {
+        return noac;
+    }
+
+    public Boolean getNoacReduced() {
+        return noacReduced;
+    }
+
+    public Boolean getHdcz() {
+        return hdcz;
+    }
+
+    public Boolean getNoTreatment() {
+        return noTreatment;
+    }
+
+    public Boolean getStatins() {
+        return statins;
+    }
+
+    public Boolean getAceinhAT1() {
+        return aceinhAT1;
+    }
+
+    public Boolean getBBlocker() {
+        return bBlocker;
+    }
+
+    public Boolean getDiuretics() {
+        return diuretics;
+    }
+
+    public Boolean getMcraSpironol() {
+        return mcraSpironol;
+    }
+
+    public Boolean getCaBlocker() {
+        return caBlocker;
+    }
+
+    public Boolean getAlphaBlocker() {
+        return alphaBlocker;
+    }
+
+    public Boolean getAntibiotics() {
+        return antibiotics;
+    }
+
+    public Boolean getInhaledPOCHP() {
+        return inhaledPOCHP;
+    }
+
+    public Boolean getAntiarhythmic() {
+        return antiarhythmic;
+    }
 }
