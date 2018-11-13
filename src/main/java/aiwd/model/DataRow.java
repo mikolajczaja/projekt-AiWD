@@ -34,7 +34,7 @@ public class DataRow {
     private List<Double> tsh;
     private List<Double> alat;
     private List<Double> aspat;
-    private String bilirubin;
+    private List<Double> bilirubin;
     private Boolean steroids;
     private Boolean alcoholDrinking;
     private Boolean pastHemorrhage;
@@ -112,7 +112,7 @@ public class DataRow {
         this.tsh = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[26]);
         this.alat = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[27]);
         this.aspat = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[28]);
-        this.bilirubin = csvRow[29];
+        this.bilirubin = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[29]);
         this.steroids = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[31]);
         this.alcoholDrinking = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[32]);
         this.pastHemorrhage = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[33]);
@@ -274,7 +274,7 @@ public class DataRow {
         return aspat;
     }
 
-    public String getBilirubin() {
+    public List<Double> getBilirubin() {
         return bilirubin;
     }
 

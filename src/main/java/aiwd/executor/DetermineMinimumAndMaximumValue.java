@@ -1,9 +1,8 @@
 package aiwd.executor;
 
+import aiwd.data.DataRowHolder;
 import aiwd.model.DataRow;
 import aiwd.model.DescriptiveStatisticOfAttribute;
-import aiwd.model.ExecutionResult;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -11,29 +10,25 @@ import java.util.stream.Collectors;
 public class DetermineMinimumAndMaximumValue extends ExecutorOfDescriptiveStatistic {
 
     private List<DescriptiveStatisticOfAttribute> attributesToProcess;
-    private List<DataRow> dataToProcess;
-
 
     public DetermineMinimumAndMaximumValue() {
         this.attributesToProcess = new ArrayList<>();
     }
 
     @Override
-    public void provideData(List<DescriptiveStatisticOfAttribute> attributes, List<DataRow> dataRows) {
+    public void provideData(List<DescriptiveStatisticOfAttribute> attributes) {
         attributesToProcess.addAll(attributes.stream().filter(this::isNumberType).collect(Collectors.toList()));
         attributesToProcess.addAll(attributes.stream().filter(this::isBooleanType).collect(Collectors.toList()));
         attributesToProcess.addAll(attributes.stream().filter(this::isListType).collect(Collectors.toList()));
-        dataToProcess = dataRows;
     }
 
     @Override
-    public ExecutionResult execute() {
+    public void execute() {
         for (DescriptiveStatisticOfAttribute attribute : attributesToProcess) {
-            for (DataRow data : dataToProcess) {
-                setMinimumAndMaximumValue(attribute, getValueByFieldName(attribute.getAttributeName(), data));
+            for (DataRow data : DataRowHolder.getInstance().getDataRowList()) {
+                setMinimumAndMaximumValue(attribute, DataRowHolder.getInstance().getValueByFieldName(attribute.getAttributeName(), data));
             }
         }
-        return null;
     }
 
     private void setMinimumAndMaximumValue(DescriptiveStatisticOfAttribute attribute, Object value) {

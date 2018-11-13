@@ -9,9 +9,14 @@ public class ParsingUtil {
 
     public static Boolean parseBooleanIgnoringEmptyString(String string) {
         if (!StringUtils.isEmpty(string)) {
-            return Boolean.parseBoolean(string);
+            Integer value = Integer.valueOf(string);
+            switch (value){
+                case 0 : return Boolean.FALSE;
+                case 1 : return Boolean.TRUE;
+                default: return Boolean.FALSE;
+            }
         }
-        return false;
+        return Boolean.FALSE;
     }
 
     public static Integer parseIntegerIgnoringEmptyString(String string) {
@@ -35,11 +40,21 @@ public class ParsingUtil {
             string = string.replace(",", ".");
 
             String[] splittedString = string.split("-");
-            for(String singleString:splittedString){
-                doubleList.add(Double.parseDouble(singleString));
+            for (String singleString : splittedString) {
+                if (isDouble(singleString)) {
+                    doubleList.add(Double.parseDouble(singleString));
+                }
             }
         }
         return doubleList;
+    }
+
+    private static boolean isDouble(String str) {
+        try {
+            return !Double.isNaN(Double.parseDouble(str));
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
     public static List<Integer> parseIntegerListIgnoringEmptyString(String string) {
@@ -48,7 +63,7 @@ public class ParsingUtil {
             string = string.replace(",", ".");
 
             String[] splittedString = string.split("-");
-            for(String singleString:splittedString){
+            for (String singleString : splittedString) {
                 integerList.add(Integer.parseInt(singleString));
             }
         }
