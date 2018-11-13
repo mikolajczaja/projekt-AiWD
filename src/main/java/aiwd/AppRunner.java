@@ -26,6 +26,7 @@ public class AppRunner {
         executors.add(new DetermineMedianValue());
         executors.add(new DetermineInterquartileRangeValue());
         executors.add(new DetermineSpecificQuantiles());
+        executors.add(new DetermineOutliers());
         for(ExecutorOfDescriptiveStatistic executor: executors){
             executor.provideData(descriptiveStatisticOfAttributes);
             executor.execute();

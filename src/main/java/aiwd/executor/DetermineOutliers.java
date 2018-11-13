@@ -3,15 +3,16 @@ package aiwd.executor;
 import aiwd.data.DataRowHolder;
 import aiwd.model.DescriptiveStatisticOfAttribute;
 import org.apache.commons.math3.stat.descriptive.rank.Percentile;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DetermineSpecificQuantiles extends ExecutorOfDescriptiveStatistic {
+public class DetermineOutliers extends ExecutorOfDescriptiveStatistic {
 
     private List<DescriptiveStatisticOfAttribute> attributesToProcess;
 
-    public DetermineSpecificQuantiles() {
+    public DetermineOutliers() {
         this.attributesToProcess = new ArrayList<>();
     }
 
@@ -26,17 +27,27 @@ public class DetermineSpecificQuantiles extends ExecutorOfDescriptiveStatistic {
         for (DescriptiveStatisticOfAttribute attribute : attributesToProcess) {
             List<Object> objects = DataRowHolder.getInstance().getColumnData(attribute.getAttributeName());
             List<Double> columnData = objectListToDoubleList(objects);
-            double[] columnDataArray = doubleListToDoubleArray(columnData);
-            attribute.setQuantile10(evaluateQuantile(columnDataArray,10.0));
-            attribute.setQuantile90(evaluateQuantile(columnDataArray,90.0));
+            evaluateOutliers(columnData,attribute);
         }
     }
 
-    private Double evaluateQuantile(double[] columnData, double percent) {
-        if (columnData == null || columnData.length == 0) {
-            return null;
+    private void evaluateOutliers(List<Double> columnData, DescriptiveStatisticOfAttribute attribute) {
+        if (columnData == null || columnData.isEmpty() || attribute.getInterquartileRange() == null) {
+            return;
         }
-        Percentile quantile = new Percentile(percent);
-        return quantile.evaluate(columnData);
+        Percentile quantile25 = new Percentile(25.0);
+        Percentile quantile75 = new Percentile(75.0);
+        double[] columnDataArray = doubleListToDoubleArray(columnData);
+        double q25 = quantile25.evaluate(columnDataArray);
+        double q75 = quantile75.evaluate(columnDataArray);
+
+        double lowerRange = (q25 - 1.5 * (double) attribute.getInterquartileRange());
+        double upperRange = (q75 + 1.5 * (double) attribute.getInterquartileRange());
+
+        for (Double data : columnData) {
+            if (data <= lowerRange || data >= upperRange) {
+                attribute.addOutlier(data);
+            }
+        }
     }
 }

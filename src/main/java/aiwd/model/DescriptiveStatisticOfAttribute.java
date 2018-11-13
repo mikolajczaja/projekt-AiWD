@@ -1,5 +1,8 @@
 package aiwd.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DescriptiveStatisticOfAttribute<T> {
 
     private String attributeName;
@@ -12,6 +15,7 @@ public class DescriptiveStatisticOfAttribute<T> {
     private T interquartileRange;
     private T quantile10;
     private T quantile90;
+    private List<T> outliers;
 
     public DescriptiveStatisticOfAttribute(String attributeName, Class type) {
         this.attributeName = attributeName;
@@ -96,5 +100,20 @@ public class DescriptiveStatisticOfAttribute<T> {
 
     public void setQuantile10(T quantile10) {
         this.quantile10 = quantile10;
+    }
+
+    public List<T> getOutliers() {
+        return outliers;
+    }
+
+    public void setOutliers(List<T> outliers) {
+        this.outliers = outliers;
+    }
+
+    public void addOutlier(T outlier) {
+        if (outliers == null) {
+            outliers = new ArrayList<>();
+        }
+        outliers.add(outlier);
     }
 }
