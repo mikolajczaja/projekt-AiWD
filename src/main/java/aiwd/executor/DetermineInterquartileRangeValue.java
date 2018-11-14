@@ -2,18 +2,18 @@ package aiwd.executor;
 
 import aiwd.data.DataRowHolder;
 import aiwd.model.DescriptiveStatisticOfAttribute;
-import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
+import org.apache.commons.math3.stat.descriptive.rank.Percentile;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DetermineStandardDeviationAndAverageValue extends ExecutorOfDescriptiveStatistic {
+public class DetermineInterquartileRangeValue extends ExecutorOfDescriptiveStatistic{
 
     private List<DescriptiveStatisticOfAttribute> attributesToProcess;
 
-    public DetermineStandardDeviationAndAverageValue() {
-        attributesToProcess = new ArrayList<>();
+    public DetermineInterquartileRangeValue() {
+        this.attributesToProcess = new ArrayList<>();
     }
 
     @Override
@@ -27,28 +27,17 @@ public class DetermineStandardDeviationAndAverageValue extends ExecutorOfDescrip
         for (DescriptiveStatisticOfAttribute attribute : attributesToProcess) {
             List<Object> objects = DataRowHolder.getInstance().getColumnData(attribute.getAttributeName());
             List<Double> columnData = objectListToDoubleList(objects);
-            evaluateStandardDeviation(attribute, columnData);
-            evaluateAverageValue(attribute, columnData);
+            evaluateInterquartileRangeValue(columnData,attribute);
         }
     }
 
-    private void evaluateStandardDeviation(DescriptiveStatisticOfAttribute attribute, List<Double> columnData) {
+    private void evaluateInterquartileRangeValue(List<Double> columnData, DescriptiveStatisticOfAttribute attribute) {
         if (columnData == null || columnData.isEmpty()) {
             return;
         }
-        StandardDeviation standardDeviation = new StandardDeviation();
+        Percentile quantile25 = new Percentile(25.0);
+        Percentile quantile75 = new Percentile(75.0);
         double[] columnDataArray = doubleListToDoubleArray(columnData);
-        attribute.setStandardDeviation(standardDeviation.evaluate(columnDataArray));
-    }
-
-    private void evaluateAverageValue(DescriptiveStatisticOfAttribute attribute, List<Double> columnData) {
-        if (columnData == null || columnData.isEmpty()) {
-            return;
-        }
-        double sum = 0.0;
-        for (Double d : columnData) {
-            sum += d;
-        }
-        attribute.setAvgValue(sum / columnData.size());
+        attribute.setInterquartileRange(quantile75.evaluate(columnDataArray) - quantile25.evaluate(columnDataArray));
     }
 }

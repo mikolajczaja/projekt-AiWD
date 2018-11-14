@@ -2,16 +2,17 @@ package aiwd.executor;
 
 import aiwd.data.DataRowHolder;
 import aiwd.model.DescriptiveStatisticOfAttribute;
-import org.apache.commons.math3.stat.descriptive.rank.Percentile;
+import org.apache.commons.math3.stat.descriptive.rank.Median;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class DetermineSpecificQuantiles extends ExecutorOfDescriptiveStatistic {
+public class DetermineMedianValue extends ExecutorOfDescriptiveStatistic {
 
     private List<DescriptiveStatisticOfAttribute> attributesToProcess;
 
-    public DetermineSpecificQuantiles() {
+    public DetermineMedianValue() {
         this.attributesToProcess = new ArrayList<>();
     }
 
@@ -26,17 +27,17 @@ public class DetermineSpecificQuantiles extends ExecutorOfDescriptiveStatistic {
         for (DescriptiveStatisticOfAttribute attribute : attributesToProcess) {
             List<Object> objects = DataRowHolder.getInstance().getColumnData(attribute.getAttributeName());
             List<Double> columnData = objectListToDoubleList(objects);
-            double[] columnDataArray = doubleListToDoubleArray(columnData);
-            attribute.setQuantile10(evaluateQuantile(columnDataArray,10.0));
-            attribute.setQuantile90(evaluateQuantile(columnDataArray,90.0));
+            evaluateMedianValue(columnData,attribute);
         }
     }
 
-    private Double evaluateQuantile(double[] columnData, double percent) {
-        if (columnData == null || columnData.length == 0) {
-            return null;
+    private void evaluateMedianValue(List<Double> columnData, DescriptiveStatisticOfAttribute attribute) {
+        if(columnData == null || columnData.isEmpty()){
+            return;
         }
-        Percentile quantile = new Percentile(percent);
-        return quantile.evaluate(columnData);
+        Median median = new Median();
+        double[] columnDataArray = doubleListToDoubleArray(columnData);
+        double result = median.evaluate(columnDataArray);
+        attribute.setMedian(result);
     }
 }
