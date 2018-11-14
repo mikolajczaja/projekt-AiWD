@@ -78,15 +78,17 @@ public class ScatterPlotPanel implements CustomChartPanel {
         final JFreeChart chart = ChartFactory.createScatterPlot(chartTitle, StringUtils.capitalize(columnFieldNames[0]),
                 StringUtils.capitalize(columnFieldNames[1]), dataset, PlotOrientation.VERTICAL, false, false, false);
 
-        double[] regression = Regression.getOLSRegression(regressionDataset, 0);
-        LineFunction2D linefunction2d = new LineFunction2D(regression[0], regression[1]);
+        if (regressionSeries.getItemCount() > 0) {
+            double[] regression = Regression.getOLSRegression(regressionDataset, 0);
+            LineFunction2D linefunction2d = new LineFunction2D(regression[0], regression[1]);
 
-        XYDataset regressionLineDataset = DatasetUtilities.sampleFunction2D(linefunction2d, 0D, 300, 100, "Regression");
-        XYPlot xyplot = chart.getXYPlot();
-        xyplot.setDataset(1, regressionLineDataset);
-        XYLineAndShapeRenderer xylineandshaperenderer = new XYLineAndShapeRenderer(true, false);
-        xylineandshaperenderer.setSeriesPaint(0, Color.BLUE);
-        xyplot.setRenderer(1, xylineandshaperenderer);
+            XYDataset regressionLineDataset = DatasetUtilities.sampleFunction2D(linefunction2d, 0D, 300, 100, "Regression");
+            XYPlot xyplot = chart.getXYPlot();
+            xyplot.setDataset(1, regressionLineDataset);
+            XYLineAndShapeRenderer xylineandshaperenderer = new XYLineAndShapeRenderer(true, false);
+            xylineandshaperenderer.setSeriesPaint(0, Color.BLUE);
+            xyplot.setRenderer(1, xylineandshaperenderer);
+        }
         return new ChartPanel(chart);
     }
 
