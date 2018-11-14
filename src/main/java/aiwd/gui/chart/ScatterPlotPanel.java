@@ -3,10 +3,12 @@ package aiwd.gui.chart;
 import aiwd.data.DataRowHolder;
 import aiwd.model.DataRow;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.math3.stat.regression.OLSMultipleLinearRegression;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.statistics.Regression;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
@@ -34,7 +36,7 @@ public class ScatterPlotPanel implements CustomChartPanel {
         for (DataRow dataRow : DataRowHolder.getInstance().getDataRowList()) {
             Object xDatasetValue = DataRowHolder.getInstance().getValueByFieldName(columnFieldNames[0], dataRow);
             Object yDatasetValue = DataRowHolder.getInstance().getValueByFieldName(columnFieldNames[1], dataRow);
-
+           // Regression.getOLSRegression()
             if ((xDatasetValue instanceof List) && (yDatasetValue instanceof Double)) {
                 for (Double d : (List<Double>) xDatasetValue) {
                     series.add(d, (Number) yDatasetValue);

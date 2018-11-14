@@ -7,27 +7,28 @@ import java.util.List;
 public class DataRow {
 
     private String id;
-    private Boolean female;
+    private Double female;
     private Double age;
-    private Boolean paroxysmalAtrialFibrillation;    //(napadowe migotanie przedsionków)
-    private Boolean persistentAtrialFibrillation;    //(przetrwale)
-    private Boolean chronicAtrialFibrillation;   //(utrwalone)
-    private Boolean over75;
-    private Boolean between65and74;
-    private Boolean arterialHypertension;
-    private Boolean diabetesType2Insulin;
-    private Boolean diabetesType2OralMedication;
-    private Boolean diabetesType2Diet;
-    private Boolean pnspEF;
-    private Boolean pnsrEF;
-    private Boolean psnmEF;
-    private Boolean pastHeartAttacks;
-    private Boolean pastStrokesOrTIA;
+    private Double paroxysmalAtrialFibrillation;    //(napadowe migotanie przedsionków)
+    private Double persistentAtrialFibrillation;    //(przetrwale)
+    private Double chronicAtrialFibrillation;   //(utrwalone)
+    private Double over75;
+    private Double between65and74;
+    private Double arterialHypertension;
+    private Double diabetesType2Insulin;
+    private Double diabetesType2OralMedication;
+    private Double diabetesType2Diet;
+    private Double pnspEF;
+    private Double pnsrEF;
+    private Double psnmEF;
+    private Double pastHeartAttacks;
+    private Double pastStrokesOrTIA;
     private Double weight;
-    private Boolean nicotineSmoking;
-    private String heartRate;
-    private Boolean heartAttackDuringHospitalization;
-    private Boolean activeInfectionDuringHospitalization;
+    private Double nicotineSmoking;
+    private Double heartRate1;
+    private Double heartRate2;
+    private Double heartAttackDuringHospitalization;
+    private Double activeInfectionDuringHospitalization;
     private List<Double> creatinine;
     private String eGFR;
     private String pchnLevel;
@@ -35,9 +36,9 @@ public class DataRow {
     private List<Double> alat;
     private List<Double> aspat;
     private List<Double> bilirubin;
-    private Boolean steroids;
-    private Boolean alcoholDrinking;
-    private Boolean pastHemorrhage;
+    private Double steroids;
+    private Double alcoholDrinking;
+    private Double pastHemorrhage;
     private List<Double> crp;
     private List<Double> thrombocytes;
     private List<Double> hemoglobin;
@@ -64,48 +65,52 @@ public class DataRow {
     private String disfunctionLevel;
     private Double tapse;
     private Double mapse;
-    private Boolean asa;
-    private Boolean clopidogrel;
-    private Boolean ticagrelor;
-    private Boolean vka;
-    private Boolean noac;
-    private Boolean noacReduced;
-    private Boolean hdcz;
-    private Boolean noTreatment;
-    private Boolean statins;
-    private Boolean aceinhAT1;
-    private Boolean bBlocker;
-    private Boolean diuretics;  //leki moczopedne
-    private Boolean mcraSpironol;
-    private Boolean caBlocker;
-    private Boolean alphaBlocker;
-    private Boolean antibiotics;
-    private Boolean inhaledPOCHP;
-    private Boolean antiarhythmic;
+    private Double asa;
+    private Double clopidogrel;
+    private Double ticagrelor;
+    private Double vka;
+    private Double noac;
+    private Double noacReduced;
+    private Double hdcz;
+    private Double noTreatment;
+    private Double statins;
+    private Double aceinhAT1;
+    private Double bBlocker;
+    private Double diuretics;  //leki moczopedne
+    private Double mcraSpironol;
+    private Double caBlocker;
+    private Double alphaBlocker;
+    private Double antibiotics;
+    private Double inhaledPOCHP;
+    private Double antiarhythmic;
 
     public DataRow(String[] csvRow) {
         this.id = csvRow[0];
-        this.female = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[2]);
+        this.female = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[2]);
         this.age = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[3]);
-        this.paroxysmalAtrialFibrillation = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[4]);
-        this.persistentAtrialFibrillation = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[5]);
-        this.chronicAtrialFibrillation = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[6]);
-        this.over75 = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[7]);
-        this.between65and74 = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[8]);
-        this.arterialHypertension = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[9]);
-        this.diabetesType2Insulin = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[10]);
-        this.diabetesType2OralMedication = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[11]);
-        this.diabetesType2Diet = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[12]);
-        this.pnspEF = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[13]);
-        this.pnsrEF = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[14]);
-        this.psnmEF = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[15]);
-        this.pastHeartAttacks = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[16]);
-        this.pastStrokesOrTIA = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[17]);
+        this.paroxysmalAtrialFibrillation = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[4]);
+        this.persistentAtrialFibrillation = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[5]);
+        this.chronicAtrialFibrillation = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[6]);
+        this.over75 = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[7]);
+        this.between65and74 = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[8]);
+        this.arterialHypertension = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[9]);
+        this.diabetesType2Insulin = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[10]);
+        this.diabetesType2OralMedication = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[11]);
+        this.diabetesType2Diet = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[12]);
+        this.pnspEF = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[13]);
+        this.pnsrEF = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[14]);
+        this.psnmEF = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[15]);
+        this.pastHeartAttacks = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[16]);
+        this.pastStrokesOrTIA = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[17]);
         this.weight = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[18]);
-        this.nicotineSmoking = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[19]);
-        this.heartRate = csvRow[20];
-        this.heartAttackDuringHospitalization = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[21]);
-        this.activeInfectionDuringHospitalization = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[22]);
+        this.nicotineSmoking = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[19]);
+        String[] splittedHeartRate = csvRow[20].split("/");
+        if(splittedHeartRate.length==2) {
+            this.heartRate1 = ParsingUtil.parseDoubleIgnoringEmptyString(splittedHeartRate[0]);
+            this.heartRate2 = ParsingUtil.parseDoubleIgnoringEmptyString(splittedHeartRate[1]);
+        }
+        this.heartAttackDuringHospitalization = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[21]);
+        this.activeInfectionDuringHospitalization = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[22]);
         this.creatinine = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[23]);
         this.eGFR = csvRow[24];
         this.pchnLevel = csvRow[25];
@@ -113,9 +118,9 @@ public class DataRow {
         this.alat = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[27]);
         this.aspat = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[28]);
         this.bilirubin = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[29]);
-        this.steroids = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[31]);
-        this.alcoholDrinking = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[32]);
-        this.pastHemorrhage = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[33]);
+        this.steroids = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[31]);
+        this.alcoholDrinking = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[32]);
+        this.pastHemorrhage = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[33]);
         this.crp = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[34]);
         this.thrombocytes = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[35]);
         this.hemoglobin = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[36]);
@@ -142,31 +147,31 @@ public class DataRow {
         this.disfunctionLevel = csvRow[57];
         this.tapse = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[58]);
         this.mapse = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[59]);
-        this.asa = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[60]);
-        this.clopidogrel = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[61]);
-        this.ticagrelor = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[62]);
-        this.vka = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[63]);
-        this.noac = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[64]);
-        this.noacReduced = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[65]);
-        this.hdcz = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[66]);
-        this.noTreatment = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[67]);
-        this.statins = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[68]);
-        this.aceinhAT1 = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[69]);
-        this.bBlocker = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[70]);
-        this.diuretics = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[71]);
-        this.mcraSpironol = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[72]);
-        this.caBlocker = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[73]);
-        this.alphaBlocker = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[74]);
-        this.antibiotics = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[75]);
-        this.inhaledPOCHP = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[76]);
-        this.antiarhythmic = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[77]);
+        this.asa = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[60]);
+        this.clopidogrel = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[61]);
+        this.ticagrelor = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[62]);
+        this.vka = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[63]);
+        this.noac = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[64]);
+        this.noacReduced = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[65]);
+        this.hdcz = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[66]);
+        this.noTreatment = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[67]);
+        this.statins = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[68]);
+        this.aceinhAT1 = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[69]);
+        this.bBlocker = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[70]);
+        this.diuretics = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[71]);
+        this.mcraSpironol = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[72]);
+        this.caBlocker = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[73]);
+        this.alphaBlocker = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[74]);
+        this.antibiotics = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[75]);
+        this.inhaledPOCHP = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[76]);
+        this.antiarhythmic = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[77]);
     }
 
     public String getId() {
         return id;
     }
 
-    public Boolean getFemale() {
+    public Double getFemale() {
         return female;
     }
 
@@ -174,59 +179,59 @@ public class DataRow {
         return age;
     }
 
-    public Boolean getParoxysmalAtrialFibrillation() {
+    public Double getParoxysmalAtrialFibrillation() {
         return paroxysmalAtrialFibrillation;
     }
 
-    public Boolean getPersistentAtrialFibrillation() {
+    public Double getPersistentAtrialFibrillation() {
         return persistentAtrialFibrillation;
     }
 
-    public Boolean getChronicAtrialFibrillation() {
+    public Double getChronicAtrialFibrillation() {
         return chronicAtrialFibrillation;
     }
 
-    public Boolean getOver75() {
+    public Double getOver75() {
         return over75;
     }
 
-    public Boolean getBetween65and74() {
+    public Double getBetween65and74() {
         return between65and74;
     }
 
-    public Boolean getArterialHypertension() {
+    public Double getArterialHypertension() {
         return arterialHypertension;
     }
 
-    public Boolean getDiabetesType2Insulin() {
+    public Double getDiabetesType2Insulin() {
         return diabetesType2Insulin;
     }
 
-    public Boolean getDiabetesType2OralMedication() {
+    public Double getDiabetesType2OralMedication() {
         return diabetesType2OralMedication;
     }
 
-    public Boolean getDiabetesType2Diet() {
+    public Double getDiabetesType2Diet() {
         return diabetesType2Diet;
     }
 
-    public Boolean getPnspEF() {
+    public Double getPnspEF() {
         return pnspEF;
     }
 
-    public Boolean getPnsrEF() {
+    public Double getPnsrEF() {
         return pnsrEF;
     }
 
-    public Boolean getPsnmEF() {
+    public Double getPsnmEF() {
         return psnmEF;
     }
 
-    public Boolean getPastHeartAttacks() {
+    public Double getPastHeartAttacks() {
         return pastHeartAttacks;
     }
 
-    public Boolean getPastStrokesOrTIA() {
+    public Double getPastStrokesOrTIA() {
         return pastStrokesOrTIA;
     }
 
@@ -234,19 +239,23 @@ public class DataRow {
         return weight;
     }
 
-    public Boolean getNicotineSmoking() {
+    public Double getNicotineSmoking() {
         return nicotineSmoking;
     }
 
-    public String getHeartRate() {
-        return heartRate;
+    public Double getHeartRate1() {
+        return heartRate1;
     }
 
-    public Boolean getHeartAttackDuringHospitalization() {
+    public Double getHeartRate2() {
+        return heartRate2;
+    }
+
+    public Double getHeartAttackDuringHospitalization() {
         return heartAttackDuringHospitalization;
     }
 
-    public Boolean getActiveInfectionDuringHospitalization() {
+    public Double getActiveInfectionDuringHospitalization() {
         return activeInfectionDuringHospitalization;
     }
 
@@ -278,15 +287,15 @@ public class DataRow {
         return bilirubin;
     }
 
-    public Boolean getSteroids() {
+    public Double getSteroids() {
         return steroids;
     }
 
-    public Boolean getAlcoholDrinking() {
+    public Double getAlcoholDrinking() {
         return alcoholDrinking;
     }
 
-    public Boolean getPastHemorrhage() {
+    public Double getPastHemorrhage() {
         return pastHemorrhage;
     }
 
@@ -394,75 +403,75 @@ public class DataRow {
         return mapse;
     }
 
-    public Boolean getAsa() {
+    public Double getAsa() {
         return asa;
     }
 
-    public Boolean getClopidogrel() {
+    public Double getClopidogrel() {
         return clopidogrel;
     }
 
-    public Boolean getTicagrelor() {
+    public Double getTicagrelor() {
         return ticagrelor;
     }
 
-    public Boolean getVka() {
+    public Double getVka() {
         return vka;
     }
 
-    public Boolean getNoac() {
+    public Double getNoac() {
         return noac;
     }
 
-    public Boolean getNoacReduced() {
+    public Double getNoacReduced() {
         return noacReduced;
     }
 
-    public Boolean getHdcz() {
+    public Double getHdcz() {
         return hdcz;
     }
 
-    public Boolean getNoTreatment() {
+    public Double getNoTreatment() {
         return noTreatment;
     }
 
-    public Boolean getStatins() {
+    public Double getStatins() {
         return statins;
     }
 
-    public Boolean getAceinhAT1() {
+    public Double getAceinhAT1() {
         return aceinhAT1;
     }
 
-    public Boolean getBBlocker() {
+    public Double getBBlocker() {
         return bBlocker;
     }
 
-    public Boolean getDiuretics() {
+    public Double getDiuretics() {
         return diuretics;
     }
 
-    public Boolean getMcraSpironol() {
+    public Double getMcraSpironol() {
         return mcraSpironol;
     }
 
-    public Boolean getCaBlocker() {
+    public Double getCaBlocker() {
         return caBlocker;
     }
 
-    public Boolean getAlphaBlocker() {
+    public Double getAlphaBlocker() {
         return alphaBlocker;
     }
 
-    public Boolean getAntibiotics() {
+    public Double getAntibiotics() {
         return antibiotics;
     }
 
-    public Boolean getInhaledPOCHP() {
+    public Double getInhaledPOCHP() {
         return inhaledPOCHP;
     }
 
-    public Boolean getAntiarhythmic() {
+    public Double getAntiarhythmic() {
         return antiarhythmic;
     }
 }
