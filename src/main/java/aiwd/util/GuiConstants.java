@@ -10,4 +10,6 @@ public class GuiConstants {
     public static final String GENERATE_DESCRIPTIVE_STATISTICS_BAR_CHART_BUTTON_LABEL = "Generate Descriptive Statistics Bar Chart";
     public static final String BOX_CHART_Y_AXIS_LABEL = "Value";
     public static final String HISTOGRAM_Y_AXIS_LABEL = "Number of occurences";
+    public static final String EVALUATE_LINEAR_REGRESSION_BUTTON = "Evaluate Linear Regression";
+    public static final String EVALUATE_PEARSONS_CORRELATION_BUTTON = "Evaluate Pearsons Correlation";
 }

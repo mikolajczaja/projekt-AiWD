@@ -1,6 +1,8 @@
 package aiwd.gui;
 
 import aiwd.data.DataRowHolder;
+import aiwd.executor.correlation.DeterminePearsonsCorrelation;
+import aiwd.executor.correlation.SimpleLinearRegression;
 import aiwd.util.ChartType;
 import aiwd.util.GuiConstants;
 
@@ -89,9 +91,63 @@ public class MainGuiWindow extends JFrame {
         });
         mainPanel.add(generateDescriptiveStatisticsBarChartButton);
 
+        JTextPane resultTextPane = new JTextPane();
+        resultTextPane.setSize(450,170);
+        resultTextPane.setLocation(20, 280);
+        resultTextPane.setEditable(false);
+        frame.getContentPane().add(resultTextPane);
+
+        JButton evaluatePearsonsCorrelationButton = new JButton(GuiConstants.EVALUATE_PEARSONS_CORRELATION_BUTTON);
+        evaluatePearsonsCorrelationButton.setSize(300, 25);
+        evaluatePearsonsCorrelationButton.setLocation(20, 220);
+        evaluatePearsonsCorrelationButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                handleClickOfEvaluatePearsonsCorrelationButton(xAxiscolumnNameComboBox, yAxiscolumnNameComboBox, resultTextPane);
+            }
+        });
+        mainPanel.add(evaluatePearsonsCorrelationButton);
+
+        JButton evaluateLinearRegressionButton = new JButton(GuiConstants.EVALUATE_LINEAR_REGRESSION_BUTTON);
+        evaluateLinearRegressionButton.setSize(300, 25);
+        evaluateLinearRegressionButton.setLocation(20, 250);
+        evaluateLinearRegressionButton.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                handleClickOfEvaluateLinearRegressionButton(xAxiscolumnNameComboBox, yAxiscolumnNameComboBox, resultTextPane);
+            }
+        });
+        mainPanel.add(evaluateLinearRegressionButton);
+
         frame.add(mainPanel);
 
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private void handleClickOfEvaluateLinearRegressionButton(JComboBox firstAttributeNameComboBox, JComboBox secondAttributeNameComboBox, JTextPane resultTextPane) {
+        SimpleLinearRegression linearRegression = new SimpleLinearRegression();
+        try {
+            double[] result = linearRegression.execute((String) firstAttributeNameComboBox.getSelectedItem(),
+                    (String) secondAttributeNameComboBox.getSelectedItem());
+            StringBuilder stringBuilder = new StringBuilder();
+            for (double d: result) {
+                stringBuilder.append("   "+ d);
+            }
+            resultTextPane.setText("Linear regression:" + stringBuilder.toString());
+        }catch (IllegalArgumentException exception) {
+            resultTextPane.setText(exception.getMessage());
+        }
+    }
+
+    private void handleClickOfEvaluatePearsonsCorrelationButton(JComboBox firstAttributeNameComboBox, JComboBox secondAttributeNameComboBox, JTextPane resultTextPane) {
+        DeterminePearsonsCorrelation determinePearsonsCorrelation = new DeterminePearsonsCorrelation();
+        try {
+            Double result = determinePearsonsCorrelation.execute((String) firstAttributeNameComboBox.getSelectedItem(),
+                    (String) secondAttributeNameComboBox.getSelectedItem());
+            resultTextPane.setText("Pearsons correlation: " + result);
+        }catch (IllegalArgumentException exception) {
+            resultTextPane.setText(exception.getMessage());
+        }
     }
 }
