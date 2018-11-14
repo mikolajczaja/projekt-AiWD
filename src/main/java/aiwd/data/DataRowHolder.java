@@ -1,10 +1,11 @@
 package aiwd.data;
 
 import aiwd.model.DataRow;
+
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class DataRowHolder {
 
@@ -39,6 +40,36 @@ public class DataRowHolder {
             addValuesToList(columnData, value);
         }
         return columnData;
+    }
+
+    public Map<String, List<Object>> getAllColumnDataSortedByColumnNames(){
+        Map<String, List<Object>> allColumnDataSortedByColumnNames=new HashMap<>();
+
+        for(Field field:DataRow.class.getDeclaredFields()){
+            for(DataRow dataRow: getDataRowList()) {
+                List<Object> columnDataForSingleKey = allColumnDataSortedByColumnNames.get(field.getName());
+                if(columnDataForSingleKey==null){
+                    columnDataForSingleKey=new LinkedList<>();
+                }
+                Object valueByFieldName = getValueByFieldName(field.getName(), dataRow);
+                if(valueByFieldName instanceof List){
+                    columnDataForSingleKey.addAll((List)valueByFieldName);
+                } else {
+                    columnDataForSingleKey.add(valueByFieldName);
+                }
+
+                allColumnDataSortedByColumnNames.put(field.getName(),columnDataForSingleKey);
+            }
+        }
+        return allColumnDataSortedByColumnNames;
+    }
+
+    public String[] getAllFieldNames(){
+        List<String> allFieldNames=new LinkedList<>();
+        for(Field field:DataRow.class.getDeclaredFields()){
+            allFieldNames.add(field.getName());
+        }
+        return allFieldNames.toArray(new String[0]);
     }
 
     public Object getValueByFieldName(String fieldName, DataRow data) {

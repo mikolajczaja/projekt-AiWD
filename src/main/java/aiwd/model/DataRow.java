@@ -254,7 +254,7 @@ public class DataRow {
         return creatinine;
     }
 
-    public String geteGFR() {
+    public String getEGFR() {
         return eGFR;
     }
 

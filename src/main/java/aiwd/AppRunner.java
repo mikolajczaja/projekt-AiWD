@@ -2,6 +2,7 @@ package aiwd;
 
 import aiwd.data.DataRowHolder;
 import aiwd.executor.*;
+import aiwd.gui.MainGuiWindow;
 import aiwd.loader.DataLoader;
 import aiwd.model.DataRow;
 import aiwd.model.DescriptiveStatisticOfAttribute;
@@ -20,6 +21,7 @@ public class AppRunner {
         List<DescriptiveStatisticOfAttribute> descriptiveStatisticOfAttributes
                 = DescriptiveStatisticOfAttributesFactory.createDescriptiveStatisticOfAttributes();
         DataRowHolder.getInstance().setDataRowList(dataRows);
+
         List<ExecutorOfDescriptiveStatistic> executors = new ArrayList<>();
         executors.add(new DetermineMinimumAndMaximumValue());
         executors.add(new DetermineStandardDeviationAndAverageValue());
@@ -27,10 +29,12 @@ public class AppRunner {
         executors.add(new DetermineInterquartileRangeValue());
         executors.add(new DetermineSpecificQuantiles());
         executors.add(new DetermineOutliers());
-        for(ExecutorOfDescriptiveStatistic executor: executors){
+        for (ExecutorOfDescriptiveStatistic executor : executors) {
             executor.provideData(descriptiveStatisticOfAttributes);
             executor.execute();
         }
+
+        MainGuiWindow mainGuiWindow = new MainGuiWindow();
     }
 
 }
