@@ -19,24 +19,24 @@ public class MainGuiWindow extends JFrame {
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         JPanel mainPanel = new JPanel();
-
+        mainPanel.setLayout(null);
         String[] comboBoxLabels = DataRowHolder.getInstance().getAllFieldNamesExceptBooleanAndStringFields();
         JComboBox xAxiscolumnNameComboBox = new JComboBox(comboBoxLabels);
         xAxiscolumnNameComboBox.setSelectedIndex(0);
-        xAxiscolumnNameComboBox.setSize(200, 50);
-        xAxiscolumnNameComboBox.setLocation(20, 50);
+        xAxiscolumnNameComboBox.setSize(300, 25);
+        xAxiscolumnNameComboBox.setLocation(20, 10);
         mainPanel.add(xAxiscolumnNameComboBox);
 
         JComboBox yAxiscolumnNameComboBox = new JComboBox(comboBoxLabels);
         yAxiscolumnNameComboBox.setSelectedIndex(0);
-        yAxiscolumnNameComboBox.setSize(200, 50);
-        yAxiscolumnNameComboBox.setLocation(20, 350);
+        yAxiscolumnNameComboBox.setSize(300, 25);
+        yAxiscolumnNameComboBox.setLocation(20, 40);
         mainPanel.add(yAxiscolumnNameComboBox);
 
 
         JButton generateBoxChartButton = new JButton(GuiConstants.GENERATE_BOX_CHART_BUTTON_LABEL);
-        generateBoxChartButton.setSize(200, 50);
-        generateBoxChartButton.setLocation(20, 150);
+        generateBoxChartButton.setSize(300, 25);
+        generateBoxChartButton.setLocation(20, 70);
         generateBoxChartButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -46,8 +46,8 @@ public class MainGuiWindow extends JFrame {
         mainPanel.add(generateBoxChartButton);
 
         JButton generateHistogramButton = new JButton(GuiConstants.GENERATE_HISTOGRAM_BUTTON_LABEL);
-        generateHistogramButton.setSize(200, 50);
-        generateHistogramButton.setLocation(20, 200);
+        generateHistogramButton.setSize(300, 25);
+        generateHistogramButton.setLocation(20, 100);
         generateHistogramButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -57,8 +57,8 @@ public class MainGuiWindow extends JFrame {
         mainPanel.add(generateHistogramButton);
 
         JButton generateScatterPlotButton = new JButton(GuiConstants.GENERATE_SCATTER_PLOT_BUTTON_LABEL);
-        generateScatterPlotButton.setSize(200, 50);
-        generateScatterPlotButton.setLocation(20, 250);
+        generateScatterPlotButton.setSize(300, 25);
+        generateScatterPlotButton.setLocation(20, 130);
         generateScatterPlotButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -68,8 +68,8 @@ public class MainGuiWindow extends JFrame {
         mainPanel.add(generateScatterPlotButton);
 
         JButton generateValueBarChartButton = new JButton(GuiConstants.GENERATE_VALUE_BAR_CHART_BUTTON_LABEL);
-        generateValueBarChartButton.setSize(200, 50);
-        generateValueBarChartButton.setLocation(20, 300);
+        generateValueBarChartButton.setSize(300, 25);
+        generateValueBarChartButton.setLocation(20, 160);
         generateValueBarChartButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -79,8 +79,8 @@ public class MainGuiWindow extends JFrame {
         mainPanel.add(generateValueBarChartButton);
 
         JButton generateDescriptiveStatisticsBarChartButton = new JButton(GuiConstants.GENERATE_DESCRIPTIVE_STATISTICS_BAR_CHART_BUTTON_LABEL);
-        generateDescriptiveStatisticsBarChartButton.setSize(200, 50);
-        generateDescriptiveStatisticsBarChartButton.setLocation(20, 350);
+        generateDescriptiveStatisticsBarChartButton.setSize(300, 25);
+        generateDescriptiveStatisticsBarChartButton.setLocation(20, 190);
         generateDescriptiveStatisticsBarChartButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {

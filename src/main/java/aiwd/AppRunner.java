@@ -1,6 +1,7 @@
 package aiwd;
 
 import aiwd.data.DataRowHolder;
+import aiwd.data.ExecutionResult;
 import aiwd.executor.*;
 import aiwd.gui.MainGuiWindow;
 import aiwd.loader.DataLoader;
@@ -15,6 +16,7 @@ import java.util.List;
 import static aiwd.util.DataLoaderConstants.CSV_DATA_FILE_PATH;
 
 public class AppRunner {
+
     public static void main(String[] args) {
         DataLoader dataLoader = new DataLoader();
         LinkedList<DataRow> dataRows = dataLoader.loadDataFromFile(CSV_DATA_FILE_PATH);
@@ -33,6 +35,7 @@ public class AppRunner {
             executor.provideData(descriptiveStatisticOfAttributes);
             executor.execute();
         }
+        ExecutionResult.getInstance().setDescriptiveStatisticOfAttributes(descriptiveStatisticOfAttributes);
 
         MainGuiWindow mainGuiWindow = new MainGuiWindow();
     }
