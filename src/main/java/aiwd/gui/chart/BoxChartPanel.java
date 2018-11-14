@@ -1,4 +1,4 @@
-package aiwd.gui;
+package aiwd.gui.chart;
 
 import aiwd.data.DataRowHolder;
 import aiwd.util.GuiConstants;
@@ -28,12 +28,10 @@ public class BoxChartPanel implements CustomChartPanel {
         return instance;
     }
 
-    public ChartPanel createNewChartPanel(String columnFieldName, String chartTitle) {
-        DefaultBoxAndWhiskerCategoryDataset dataset = new DefaultBoxAndWhiskerCategoryDataset();
-        dataset.add(DataRowHolder.getInstance().getAllColumnDataSortedByColumnNames().get(columnFieldName), StringUtils.EMPTY, StringUtils.EMPTY);
+    public ChartPanel createNewChartPanel(String chartTitle, String... columnFieldNames) {
 
-        final CategoryAxis xAxis = new CategoryAxis(columnFieldName);
-        final NumberAxis yAxis = new NumberAxis(GuiConstants.CHART_Y_AXIS_LABEL);
+        final CategoryAxis xAxis = new CategoryAxis(StringUtils.capitalize(columnFieldNames[0]));
+        final NumberAxis yAxis = new NumberAxis(GuiConstants.BOX_CHART_Y_AXIS_LABEL);
         final BoxAndWhiskerRenderer renderer = new BoxAndWhiskerRenderer();
 
         renderer.setFillBox(false);
@@ -41,6 +39,11 @@ public class BoxChartPanel implements CustomChartPanel {
         renderer.setMeanVisible(false);
         //renderer.setMedianVisible(false); //czarna kropka smierci
         renderer.setToolTipGenerator(new BoxAndWhiskerToolTipGenerator());
+
+        DefaultBoxAndWhiskerCategoryDataset dataset = new DefaultBoxAndWhiskerCategoryDataset();
+        dataset.add(DataRowHolder.getInstance().getAllColumnDataSortedByColumnNames().get(columnFieldNames[0]),
+                StringUtils.EMPTY, StringUtils.EMPTY);
+
 
         final CategoryPlot plot = new CategoryPlot(dataset, xAxis, yAxis, renderer);
         final JFreeChart chart = new JFreeChart(chartTitle, new Font("SansSerif", Font.BOLD, 14), plot, false);

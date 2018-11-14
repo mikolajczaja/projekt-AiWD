@@ -22,17 +22,17 @@ public class DataRowHolder {
         return instance;
     }
 
-    public void setDataRowList(List<DataRow> dataRows) {
-        dataRowList = dataRows;
-    }
-
     public List<DataRow> getDataRowList() {
         return dataRowList;
     }
 
+    public void setDataRowList(List<DataRow> dataRows) {
+        dataRowList = dataRows;
+    }
+
     public List<Object> getColumnData(String attributeName) {
         List<Object> columnData = new ArrayList<>();
-        if(attributeName == null || dataRowList == null){
+        if (attributeName == null || dataRowList == null) {
             return columnData;
         }
         for (DataRow dataRow : dataRowList) {
@@ -42,32 +42,94 @@ public class DataRowHolder {
         return columnData;
     }
 
-    public Map<String, List<Object>> getAllColumnDataSortedByColumnNames(){
-        Map<String, List<Object>> allColumnDataSortedByColumnNames=new HashMap<>();
+    public Map<String, List<Object>> getAllColumnDataSortedByColumnNames() {
+        Map<String, List<Object>> allColumnDataSortedByColumnNames = new HashMap<>();
 
-        for(Field field:DataRow.class.getDeclaredFields()){
-            for(DataRow dataRow: getDataRowList()) {
+        for (Field field : DataRow.class.getDeclaredFields()) {
+            for (DataRow dataRow : getDataRowList()) {
                 List<Object> columnDataForSingleKey = allColumnDataSortedByColumnNames.get(field.getName());
-                if(columnDataForSingleKey==null){
-                    columnDataForSingleKey=new LinkedList<>();
+                if (columnDataForSingleKey == null) {
+                    columnDataForSingleKey = new LinkedList<>();
                 }
                 Object valueByFieldName = getValueByFieldName(field.getName(), dataRow);
-                if(valueByFieldName instanceof List){
-                    columnDataForSingleKey.addAll((List)valueByFieldName);
+                if (valueByFieldName instanceof List) {
+                    columnDataForSingleKey.addAll((List) valueByFieldName);
                 } else {
                     columnDataForSingleKey.add(valueByFieldName);
                 }
 
-                allColumnDataSortedByColumnNames.put(field.getName(),columnDataForSingleKey);
+                allColumnDataSortedByColumnNames.put(field.getName(), columnDataForSingleKey);
             }
         }
         return allColumnDataSortedByColumnNames;
     }
 
-    public String[] getAllFieldNames(){
-        List<String> allFieldNames=new LinkedList<>();
-        for(Field field:DataRow.class.getDeclaredFields()){
+    public Map<String, List<Object>> getAllColumnDataExceptBooleanAndStringFieldsSortedByColumnNames() {
+        Map<String, List<Object>> allColumnDataSortedByColumnNames = new HashMap<>();
+
+        for (Field field : DataRow.class.getDeclaredFields()) {
+            for (DataRow dataRow : getDataRowList()) {
+                List<Object> columnDataForSingleKey = allColumnDataSortedByColumnNames.get(field.getName());
+                if (columnDataForSingleKey == null) {
+                    columnDataForSingleKey = new LinkedList<>();
+                }
+                Object valueByFieldName = getValueByFieldName(field.getName(), dataRow);
+                if ((field.getType() != Boolean.class) && (field.getType() != String.class)) {
+                    if (valueByFieldName instanceof List) {
+                        columnDataForSingleKey.addAll((List) valueByFieldName);
+                    } else {
+                        columnDataForSingleKey.add(valueByFieldName);
+                    }
+                }
+
+                allColumnDataSortedByColumnNames.put(field.getName(), columnDataForSingleKey);
+            }
+        }
+        return allColumnDataSortedByColumnNames;
+    }
+
+    public Map<String, List<Double>> getAllParsableToDoubleColumnDataFieldsSortedByColumnNames() {
+        Map<String, List<Double>> allColumnDataSortedByColumnNames = new HashMap<>();
+
+        for (Field field : DataRow.class.getDeclaredFields()) {
+            for (DataRow dataRow : getDataRowList()) {
+                List<Double> columnDataForSingleKey = allColumnDataSortedByColumnNames.get(field.getName());
+                if (columnDataForSingleKey == null) {
+                    columnDataForSingleKey = new LinkedList<>();
+                }
+                Object valueByFieldName = getValueByFieldName(field.getName(), dataRow);
+                if ((field.getType() != Boolean.class) && (field.getType() != String.class)) {
+                    if (valueByFieldName instanceof List) {
+                        columnDataForSingleKey.addAll((List<Double>) valueByFieldName);
+                    } else if (valueByFieldName instanceof Double) {
+                        columnDataForSingleKey.add((double) valueByFieldName);
+                    }
+                }
+
+                allColumnDataSortedByColumnNames.put(field.getName(), columnDataForSingleKey);
+            }
+        }
+        return allColumnDataSortedByColumnNames;
+    }
+
+    public int getRowsCount() {
+        return dataRowList.size();
+    }
+
+    public String[] getAllFieldNames() {
+        List<String> allFieldNames = new LinkedList<>();
+        for (Field field : DataRow.class.getDeclaredFields()) {
             allFieldNames.add(field.getName());
+        }
+        return allFieldNames.toArray(new String[0]);
+    }
+
+    public String[] getAllFieldNamesExceptBooleanAndStringFields() {
+        List<String> allFieldNames = new LinkedList<>();
+        for (Field field : DataRow.class.getDeclaredFields()) {
+            if ((field.getType() != Boolean.class) && (field.getType() != String.class)) {
+                allFieldNames.add(field.getName());
+            }
         }
         return allFieldNames.toArray(new String[0]);
     }
@@ -85,7 +147,7 @@ public class DataRowHolder {
     }
 
     private void addValuesToList(List<Object> columnData, Object value) {
-        if(value == null){
+        if (value == null) {
             return;
         }
         addValuesFromFieldOfTypeList(columnData, value);
@@ -104,7 +166,7 @@ public class DataRowHolder {
             return;
         }
         for (Object o : (List) value) {
-            if(o != null) {
+            if (o != null) {
                 columnData.add(o);
             }
         }

@@ -8,7 +8,7 @@ public class DataRow {
 
     private String id;
     private Boolean female;
-    private Integer age;
+    private Double age;
     private Boolean paroxysmalAtrialFibrillation;    //(napadowe migotanie przedsionków)
     private Boolean persistentAtrialFibrillation;    //(przetrwale)
     private Boolean chronicAtrialFibrillation;   //(utrwalone)
@@ -23,7 +23,7 @@ public class DataRow {
     private Boolean psnmEF;
     private Boolean pastHeartAttacks;
     private Boolean pastStrokesOrTIA;
-    private Integer weight;
+    private Double weight;
     private Boolean nicotineSmoking;
     private String heartRate;
     private Boolean heartAttackDuringHospitalization;
@@ -39,15 +39,15 @@ public class DataRow {
     private Boolean alcoholDrinking;
     private Boolean pastHemorrhage;
     private List<Double> crp;
-    private List<Integer> thrombocytes;
+    private List<Double> thrombocytes;
     private List<Double> hemoglobin;
-    private List<Integer> sodium;
+    private List<Double> sodium;
     private List<Double> potassium;
-    private List<Integer> ntProBNP;
+    private List<Double> ntProBNP;
     private List<Double> cholesterol;
     private List<Double> ldl;
     private List<Double> hdl;
-    private List<Integer> triglicerides;
+    private List<Double> triglicerides;
     private Double lvedd;
     private Double rvedd;
     private Double lad;
@@ -62,8 +62,8 @@ public class DataRow {
     private Double eaRatio;
     private Double eemRatio;
     private String disfunctionLevel;
-    private Integer tapse;
-    private Integer mapse;
+    private Double tapse;
+    private Double mapse;
     private Boolean asa;
     private Boolean clopidogrel;
     private Boolean ticagrelor;
@@ -86,7 +86,7 @@ public class DataRow {
     public DataRow(String[] csvRow) {
         this.id = csvRow[0];
         this.female = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[2]);
-        this.age = ParsingUtil.parseIntegerIgnoringEmptyString(csvRow[3]);
+        this.age = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[3]);
         this.paroxysmalAtrialFibrillation = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[4]);
         this.persistentAtrialFibrillation = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[5]);
         this.chronicAtrialFibrillation = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[6]);
@@ -101,7 +101,7 @@ public class DataRow {
         this.psnmEF = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[15]);
         this.pastHeartAttacks = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[16]);
         this.pastStrokesOrTIA = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[17]);
-        this.weight = ParsingUtil.parseIntegerIgnoringEmptyString(csvRow[18]);
+        this.weight = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[18]);
         this.nicotineSmoking = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[19]);
         this.heartRate = csvRow[20];
         this.heartAttackDuringHospitalization = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[21]);
@@ -117,15 +117,15 @@ public class DataRow {
         this.alcoholDrinking = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[32]);
         this.pastHemorrhage = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[33]);
         this.crp = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[34]);
-        this.thrombocytes = ParsingUtil.parseIntegerListIgnoringEmptyString(csvRow[35]);
+        this.thrombocytes = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[35]);
         this.hemoglobin = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[36]);
-        this.sodium = ParsingUtil.parseIntegerListIgnoringEmptyString(csvRow[37]);
+        this.sodium = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[37]);
         this.potassium = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[38]);
-        this.ntProBNP = ParsingUtil.parseIntegerListIgnoringEmptyString(csvRow[39]);
+        this.ntProBNP = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[39]);
         this.cholesterol = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[40]);
         this.ldl = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[41]);
         this.hdl = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[42]);
-        this.triglicerides = ParsingUtil.parseIntegerListIgnoringEmptyString(csvRow[43]);
+        this.triglicerides = ParsingUtil.parseDoubleListIgnoringEmptyString(csvRow[43]);
         this.lvedd = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[44]);
         this.rvedd = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[45]);
         this.lad = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[46]);
@@ -140,8 +140,8 @@ public class DataRow {
         this.eaRatio = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[55]);
         this.eemRatio = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[56]);
         this.disfunctionLevel = csvRow[57];
-        this.tapse = ParsingUtil.parseIntegerIgnoringEmptyString(csvRow[58]);
-        this.mapse = ParsingUtil.parseIntegerIgnoringEmptyString(csvRow[59]);
+        this.tapse = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[58]);
+        this.mapse = ParsingUtil.parseDoubleIgnoringEmptyString(csvRow[59]);
         this.asa = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[60]);
         this.clopidogrel = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[61]);
         this.ticagrelor = ParsingUtil.parseBooleanIgnoringEmptyString(csvRow[62]);
@@ -170,7 +170,7 @@ public class DataRow {
         return female;
     }
 
-    public Integer getAge() {
+    public Double getAge() {
         return age;
     }
 
@@ -230,7 +230,7 @@ public class DataRow {
         return pastStrokesOrTIA;
     }
 
-    public Integer getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
@@ -294,7 +294,7 @@ public class DataRow {
         return crp;
     }
 
-    public List<Integer> getThrombocytes() {
+    public List<Double> getThrombocytes() {
         return thrombocytes;
     }
 
@@ -302,7 +302,7 @@ public class DataRow {
         return hemoglobin;
     }
 
-    public List<Integer> getSodium() {
+    public List<Double> getSodium() {
         return sodium;
     }
 
@@ -310,7 +310,7 @@ public class DataRow {
         return potassium;
     }
 
-    public List<Integer> getNtProBNP() {
+    public List<Double> getNtProBNP() {
         return ntProBNP;
     }
 
@@ -326,7 +326,7 @@ public class DataRow {
         return hdl;
     }
 
-    public List<Integer> getTriglicerides() {
+    public List<Double> getTriglicerides() {
         return triglicerides;
     }
 
@@ -386,11 +386,11 @@ public class DataRow {
         return disfunctionLevel;
     }
 
-    public Integer getTapse() {
+    public Double getTapse() {
         return tapse;
     }
 
-    public Integer getMapse() {
+    public Double getMapse() {
         return mapse;
     }
 
